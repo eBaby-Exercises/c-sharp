@@ -4,12 +4,12 @@ using Xunit;
 
 namespace eBaby.Tests
 {
-    public class UnitTest1
+    public class UserTest
     {
         [Fact]
-        public void Test1()
+        public void User_creation()
         {
-            new Class1().Should().NotBeNull();
+            new User().Should().NotBeNull();
         }
     }
 }
