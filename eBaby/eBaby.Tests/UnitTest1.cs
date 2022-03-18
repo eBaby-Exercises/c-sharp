@@ -8,6 +8,7 @@ namespace eBaby.Tests
         [Fact]
         public void Test1()
         {
+            new Class1();
             Assert.False(false);
         }
     }
