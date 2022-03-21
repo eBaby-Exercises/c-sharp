@@ -29,10 +29,18 @@ namespace eBaby.Tests
         public void User_Registration()
         {
             //create an user
+            User user = new User(string.Empty, string.Empty, string.Empty, string.Empty, string.Empty);
+
             //create registry
+            UserRegistry registry = new UserRegistry();
             //add user to registry
             //verify user is registered
+
         }
     }
 
+    public class UserRegistry
+    {
+
+    }
 }
