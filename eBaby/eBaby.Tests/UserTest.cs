@@ -12,12 +12,15 @@ namespace eBaby.Tests
         {
             string firstName = "James";
             string lastName = "Bond";
-            string userEmail = ;
-            string userName = string.Empty;
-            string password = string.Empty;
+            string userEmail = "somebody@example.com";
+            string userName = "[username]";
+            string password = "[pWord]";
             var sut = new User(firstName, lastName, userEmail, userName, password);
             sut.firstName.Should().Be("James");
             sut.lastName.Should().Be("Bond");
+            sut.userEmail.Should().Be("somebody@example.com");
+            sut.userName.Should().Be("[username]");
+            sut.password.Should().Be("[pWord]");
         }
     }
 }
