@@ -28,14 +28,9 @@ namespace eBaby.Tests
         [Fact]
         public void User_Registration()
         {
-            //create an user
-            User user = new User(string.Empty, string.Empty, string.Empty, string.Empty, string.Empty);
-
-            //create registry
+            User user = Arbitrary.User();
             UserRegistry registry = new UserRegistry();
-            //add user to registry
             registry.Add(user);
-            //verify user is registered
             registry.RegisteredUsers.Should().BeEquivalentTo(new[] {user});
         }
     }
