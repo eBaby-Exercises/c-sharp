@@ -3,5 +3,5 @@ using System.Data.Common;
 
 namespace eBaby
 {
-    public record User(string firstName, string lastName, string userEmail, string userName, string password);
+    public record User(string FirstName, string LastName, string UserEmail, string UserName, string Password);
 }
