@@ -10,12 +10,16 @@ namespace eBaby.Tests
         [Fact]
         public void User_Creation()
         {
-            string firstName = string.Empty;
+            string firstName = "James";
             string lastName = string.Empty;
             string userEmail = string.Empty;
             string userName = string.Empty;
             string password = string.Empty;
-            new User(firstName, lastName, userEmail, userName, password).Should().NotBeNull();
+            var sut = new User(firstName, lastName, userEmail, userName, password);
+
+            Assert.Equal("James", sut.firstName);
+
+
         }
     }
 }
