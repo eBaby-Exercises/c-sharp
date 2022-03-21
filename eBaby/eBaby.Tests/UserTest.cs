@@ -24,5 +24,15 @@ namespace eBaby.Tests
             sut.UserName.Should().Be(userName);
             sut.Password.Should().Be(password);
         }
+
+        [Fact]
+        public void User_Registration()
+        {
+            //create an user
+            //create registry
+            //add user to registry
+            //verify user is registered
+        }
     }
+
 }
