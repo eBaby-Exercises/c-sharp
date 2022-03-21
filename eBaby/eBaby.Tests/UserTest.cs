@@ -34,13 +34,9 @@ namespace eBaby.Tests
             //create registry
             UserRegistry registry = new UserRegistry();
             //add user to registry
+            registry.Add(user);
             //verify user is registered
-
+            registry.RegisteredUsers.Should().BeEquivalentTo(new[] {user});
         }
-    }
-
-    public class UserRegistry
-    {
-
     }
 }
