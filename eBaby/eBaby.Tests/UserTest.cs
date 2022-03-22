@@ -57,6 +57,8 @@ namespace eBaby.Tests
             registry.Add(user);
             var foundUser = registry.FindUser(user.UserName);
             foundUser.Should().BeSameAs(user);
+            foundUser.IsLoggedIn.Should().BeFalse();
+            user.TryToLogIn( "password");
             foundUser.IsLoggedIn.Should().BeTrue();
             // If equal, then: set authenticated property to true
             // If not equal, then: throw BadCredentials exception
