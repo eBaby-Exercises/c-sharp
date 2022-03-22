@@ -41,7 +41,7 @@ namespace eBaby.Tests
             User user = Arbitrary.User();
             UserRegistry registry = new UserRegistry();
             registry.Add(user);
-            registry.FindUser(user.UserName);
+            var foundUser= registry.FindUser(user.UserName); 
             // Find user from registry by username
             // Compare user's password with supplied password
             // If equal, then: set authenticated property to true

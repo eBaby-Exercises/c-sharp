@@ -13,8 +13,9 @@ namespace eBaby
 
         public IReadOnlyList<User> RegisteredUsers => _users;
 
-        public void FindUser(string userUserName)
+        public User FindUser(string userUserName)
         {
+            return null;
         }
     }
 }
