@@ -35,6 +35,21 @@ namespace eBaby.Tests
         }
 
         [Fact]
+        public void RetrievingUserByUserName_Should_ReturnCorrectUser()
+        {
+
+            User user = Arbitrary.User();
+            User otherUser = Arbitrary.User();
+            UserRegistry registry = new UserRegistry();
+            registry.Add(user);
+            registry.Add(otherUser);
+            var foundUser = registry.FindUser(user.UserName);
+            foundUser.Should().BeSameAs(user);
+            //foundUser = registry.FindUser(otherUser.UserName);
+            //foundUser.Should().BeSameAs(otherUser);
+        }
+
+        [Fact]
         public void User_Login_Success()
         {
 
