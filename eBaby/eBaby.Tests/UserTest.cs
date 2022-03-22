@@ -37,10 +37,8 @@ namespace eBaby.Tests
         [Fact]
         public void RetrievingUserByUserName_Should_ReturnCorrectUser()
         {
-            User user = Arbitrary.User();
+            var user = Arbitrary.RegisteredUser(out var registry);
             User otherUser = Arbitrary.User();
-            UserRegistry registry = new UserRegistry();
-            registry.Add(user);
             registry.Add(otherUser);
             var foundUser = registry.FindUser(user.UserName);
             foundUser.Should().BeSameAs(user);
@@ -51,9 +49,7 @@ namespace eBaby.Tests
         [Fact]
         public void User_Login_Success()
         {
-            User user = Arbitrary.User();
-            UserRegistry registry = new UserRegistry();
-            registry.Add(user);
+            var user = Arbitrary.RegisteredUser(out var registry);
             var foundUser = registry.FindUser(user.UserName);
             foundUser.Should().BeSameAs(user);
             foundUser.IsLoggedIn.Should().BeFalse();
@@ -64,9 +60,7 @@ namespace eBaby.Tests
         [Fact]
         public void User_Login_Failure()
         {
-            User user = Arbitrary.User();
-            UserRegistry registry = new UserRegistry();
-            registry.Add(user);
+            var user = Arbitrary.RegisteredUser(out var registry);
             var foundUser = registry.FindUser(user.UserName);
             foundUser.Should().BeSameAs(user);
             foundUser.IsLoggedIn.Should().BeFalse();

@@ -9,4 +9,12 @@ static internal class Arbitrary
         return new User(string.Empty, 
             string.Empty, string.Empty, randomUserName, "right_password");
     }
+
+    public static User RegisteredUser(out UserRegistry registry)
+    {
+        User user = Arbitrary.User();
+        registry = new UserRegistry();
+        registry.Add(user);
+        return user;
+    }
 }
