@@ -51,19 +51,28 @@ namespace eBaby.Tests
         [Fact]
         public void User_Login_Success()
         {
-
             User user = Arbitrary.User();
             UserRegistry registry = new UserRegistry();
             registry.Add(user);
             var foundUser = registry.FindUser(user.UserName);
             foundUser.Should().BeSameAs(user);
             foundUser.IsLoggedIn.Should().BeFalse();
-            user.TryToLogIn( "password");
+            user.TryToLogIn( "right_password");
             foundUser.IsLoggedIn.Should().BeTrue();
-            // If equal, then: set authenticated property to true
-            // If not equal, then: throw BadCredentials exception
-            // Verify that user logged in
-
+        }
+        
+        [Fact]
+        public void User_Login_Failure()
+        {
+            User user = Arbitrary.User();
+            UserRegistry registry = new UserRegistry();
+            registry.Add(user);
+            var foundUser = registry.FindUser(user.UserName);
+            foundUser.Should().BeSameAs(user);
+            foundUser.IsLoggedIn.Should().BeFalse();
+            user.TryToLogIn( "wrong_password");
+            foundUser.IsLoggedIn.Should().BeFalse();
+            // If not equal, then: throw BadCredentials 
         }
     }
 }

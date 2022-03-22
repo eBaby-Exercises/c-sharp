@@ -9,6 +9,7 @@ namespace eBaby
 
         public void TryToLogIn(string password)
         {
+            if(password == Password)
              IsLoggedIn = true;
         }
     }
