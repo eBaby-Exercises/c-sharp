@@ -33,5 +33,18 @@ namespace eBaby.Tests
             registry.Add(user);
             registry.RegisteredUsers.Should().BeEquivalentTo(new[] {user});
         }
+
+        [Fact]
+        public void User_Login_Success()
+        {
+            // Create a user
+            // Create a registry
+            // Register the user
+            // Find user from registry by username
+            // Compare user's password with supplied password
+            // If equal, then: set authenticated property to true
+            // If not equal, then: throw BadCredentials exception
+            // Verify that user logged in
+        }
     }
 }
