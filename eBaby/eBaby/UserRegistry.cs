@@ -15,7 +15,7 @@ namespace eBaby
 
         public User FindUser(string userUserName)
         {
-            return null;
+            return _users[0];
         }
     }
 }
