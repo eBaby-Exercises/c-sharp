@@ -37,7 +37,6 @@ namespace eBaby.Tests
         [Fact]
         public void RetrievingUserByUserName_Should_ReturnCorrectUser()
         {
-
             User user = Arbitrary.User();
             User otherUser = Arbitrary.User();
             UserRegistry registry = new UserRegistry();
@@ -45,8 +44,8 @@ namespace eBaby.Tests
             registry.Add(otherUser);
             var foundUser = registry.FindUser(user.UserName);
             foundUser.Should().BeSameAs(user);
-            //foundUser = registry.FindUser(otherUser.UserName);
-            //foundUser.Should().BeSameAs(otherUser);
+            foundUser = registry.FindUser(otherUser.UserName);
+            foundUser.Should().BeSameAs(otherUser);
         }
 
         [Fact]
@@ -58,6 +57,7 @@ namespace eBaby.Tests
             registry.Add(user);
             var foundUser = registry.FindUser(user.UserName);
             foundUser.Should().BeSameAs(user);
+
             // Compare user's password with supplied password
             // If equal, then: set authenticated property to true
             // If not equal, then: throw BadCredentials exception

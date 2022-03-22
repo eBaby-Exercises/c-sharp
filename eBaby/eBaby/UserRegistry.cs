@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 
 namespace eBaby
 {
@@ -13,9 +14,10 @@ namespace eBaby
 
         public IReadOnlyList<User> RegisteredUsers => _users;
 
-        public User FindUser(string userUserName)
+        public User FindUser(string userName)
         {
-            return _users[0];
+            return _users
+                .FirstOrDefault(user => user.UserName == userName);
         }
     }
 }
