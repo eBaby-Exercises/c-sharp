@@ -37,14 +37,17 @@ namespace eBaby.Tests
         [Fact]
         public void User_Login_Success()
         {
-            // Create a user
-            // Create a registry
-            // Register the user
+
+            User user = Arbitrary.User();
+            UserRegistry registry = new UserRegistry();
+            registry.Add(user);
+            registry.FindUser(user.UserName);
             // Find user from registry by username
             // Compare user's password with supplied password
             // If equal, then: set authenticated property to true
             // If not equal, then: throw BadCredentials exception
             // Verify that user logged in
+
         }
     }
 }
