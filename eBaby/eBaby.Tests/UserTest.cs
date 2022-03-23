@@ -1,4 +1,5 @@
 using System;
+using ApprovalTests;
 using FluentAssertions;
 using Microsoft.VisualBasic;
 using Xunit;
@@ -25,6 +26,12 @@ namespace eBaby.Tests
             sut.Password.Should().Be(password);
             sut.IsLoggedIn.Should().BeFalse();
             sut.IsSeller.Should().BeFalse();
+        }
+
+        [Fact]
+        public void Auction_Properties()
+        {
+            Approvals.Verify(new Auction("Seller", "ItemDescr","StartPrice","StartTime","EndTime"));
         }
 
         [Fact]
@@ -114,4 +121,6 @@ namespace eBaby.Tests
             user.IsLoggedIn.Should().BeFalse();
         }
     }
+
+    public record Auction(string Seller, string Itemdescr, string Startprice, string Starttime, string Endtime);
 }
