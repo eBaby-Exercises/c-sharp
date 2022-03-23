@@ -6,7 +6,12 @@ static internal class Arbitrary
     public static User User()
     {
         string randomUserName = Guid.NewGuid().ToString();
-        return new User(string.Empty, 
+        return UserWithUserName(randomUserName);
+    }
+
+    public static User UserWithUserName(string randomUserName)
+    {
+        return new User(string.Empty,
             string.Empty, string.Empty, randomUserName, "right_password");
     }
 
@@ -17,4 +22,6 @@ static internal class Arbitrary
         registry.Add(user);
         return user;
     }
+
+
 }

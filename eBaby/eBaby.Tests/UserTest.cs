@@ -31,7 +31,7 @@ namespace eBaby.Tests
         [Fact]
         public void Auction_Properties()
         {
-            Approvals.Verify(new Auction("Seller", "ItemDescr","StartPrice","StartTime","EndTime"));
+            Approvals.Verify(new Auction(Arbitrary.UserWithUserName("right_username"), "ItemDescr","StartPrice","StartTime","EndTime"));
         }
 
         [Fact]
@@ -122,5 +122,5 @@ namespace eBaby.Tests
         }
     }
 
-    public record Auction(string Seller, string Itemdescr, string Startprice, string Starttime, string Endtime);
+    public record Auction(User Seller, string Itemdescr, string Startprice, string Starttime, string Endtime);
 }
