@@ -1,7 +1,6 @@
 using System;
 using ApprovalTests;
 using FluentAssertions;
-using Microsoft.VisualBasic;
 using Xunit;
 
 namespace eBaby.Tests
@@ -124,17 +123,22 @@ namespace eBaby.Tests
         }
     }
 
-    public class StoppedClock
+    public abstract class Clock
     {
-        public DateTimeOffset Now()
+        public abstract DateTimeOffset Now();
+    }
+
+    public class StoppedClock : Clock
+    {
+        public override DateTimeOffset Now()
         {
             return DateTimeOffset.Parse("2022-02-02");
         }
-    }   
+    }
     
-    public class SystemClock
+    public class SystemClock : Clock
     {
-        public DateTimeOffset Now()
+        public override DateTimeOffset Now()
         {
             return DateTimeOffset.Now;
         }
