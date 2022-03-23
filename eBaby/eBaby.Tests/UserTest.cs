@@ -55,6 +55,15 @@ namespace eBaby.Tests
             user.IsLoggedIn.Should().BeFalse();
             registry.LogIn(user.UserName, "right_password");
             user.IsLoggedIn.Should().BeTrue();
+        }        
+        
+        [Fact]
+        public void User_Can_Become_Seller()
+        {
+            var user = Arbitrary.RegisteredUser(out var registry);
+            user.IsSeller.Should().BeFalse();
+            registry.MakeSeller(user.UserName);
+            user.IsSeller.Should().BeTrue();
         } 
         
         [Fact]

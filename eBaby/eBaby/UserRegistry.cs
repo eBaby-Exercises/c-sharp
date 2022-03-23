@@ -30,5 +30,17 @@ namespace eBaby
             }
             foundUser.TryToLogIn(password);
         }
+
+        public void MakeSeller(string userName)
+        {
+            var foundUser = FindUser(userName);
+            foundUser.BecomeSeller();
+            //if (foundUser is null)
+            //{
+            //    throw new BadCredentialsException();
+            //}
+            //foundUser.TryToLogIn(password);
+
+        }
     }
 }

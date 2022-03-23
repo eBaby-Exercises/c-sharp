@@ -25,5 +25,10 @@ namespace eBaby
         {
             IsLoggedIn = false;
         }
+
+        public void BecomeSeller()
+        {
+            IsSeller = true;
+        }
     }
 }
