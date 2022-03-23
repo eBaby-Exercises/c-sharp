@@ -60,9 +60,12 @@ namespace eBaby.Tests
         {
             var user = Arbitrary.RegisteredUser(out var registry);
             user.IsLoggedIn.Should().BeFalse();
-            registry.LogIn(user.UserName, "wrong_password");
+            Action loginIn = ()=>
+            {
+                registry.LogIn(user.UserName, "wrong_password");
+            };
+            loginIn.Should().Throw<BadCredentialsException>();
             user.IsLoggedIn.Should().BeFalse();
-            // If not equal, then: throw BadCredentials 
         }
     }
 }
