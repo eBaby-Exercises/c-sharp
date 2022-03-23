@@ -34,13 +34,11 @@ namespace eBaby
         public void MakeSeller(string userName)
         {
             var foundUser = FindUser(userName);
+            if (foundUser is null)
+            {
+                throw new BadCredentialsException();
+            }
             foundUser.BecomeSeller();
-            //if (foundUser is null)
-            //{
-            //    throw new BadCredentialsException();
-            //}
-            //foundUser.TryToLogIn(password);
-
         }
     }
 }

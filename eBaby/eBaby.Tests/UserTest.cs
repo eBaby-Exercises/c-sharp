@@ -67,6 +67,19 @@ namespace eBaby.Tests
         } 
         
         [Fact]
+        public void Making_seller_with_bad_username_fails()
+        {
+            var user = Arbitrary.RegisteredUser(out var registry);
+            user.IsSeller.Should().BeFalse();
+            Action makeSeller = () =>
+            {
+                registry.MakeSeller("incorrect_UserName");
+            };
+            makeSeller.Should().Throw<BadCredentialsException>();
+            user.IsSeller.Should().BeFalse();
+        }
+        
+        [Fact]
         public void User_Login_With_Bad_UserName()
         {
             var user = Arbitrary.RegisteredUser(out var registry);
