@@ -1,1 +1,1 @@
-﻿Auction { Seller = User { FirstName = , LastName = , UserEmail = , UserName = right_username, Password = right_password, IsLoggedIn = False, IsSeller = False }, Itemdescr = ItemDescr, Startprice = StartPrice, Starttime = StartTime, Endtime = EndTime }
+﻿Auction { Seller = User { FirstName = , LastName = , UserEmail = , UserName = right_username, Password = right_password, IsLoggedIn = False, IsSeller = False }, Itemdescr = ItemDescr, Startprice = 23.95, Starttime = StartTime, Endtime = EndTime }
