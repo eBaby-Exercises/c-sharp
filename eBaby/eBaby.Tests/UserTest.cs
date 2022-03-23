@@ -45,7 +45,7 @@ namespace eBaby.Tests
             foundUser = registry.FindUser(otherUser.UserName);
             foundUser.Should().BeSameAs(otherUser);
         }
-
+        
         [Fact]
         public void User_Login_Success()
         {
@@ -53,6 +53,19 @@ namespace eBaby.Tests
             user.IsLoggedIn.Should().BeFalse();
             registry.LogIn(user.UserName, "right_password");
             user.IsLoggedIn.Should().BeTrue();
+        } 
+        
+        [Fact]
+        public void User_Login_With_Bad_UserName()
+        {
+            var user = Arbitrary.RegisteredUser(out var registry);
+            user.IsLoggedIn.Should().BeFalse();
+            Action loginIn = () =>
+            {
+                registry.LogIn("incorrect_UserName", "right_password");
+            };
+            loginIn.Should().Throw<BadCredentialsException>();
+            user.IsLoggedIn.Should().BeFalse();
         }
 
         [Fact]

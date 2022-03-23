@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization.Formatters;
 
 namespace eBaby
 {
@@ -23,6 +24,10 @@ namespace eBaby
         public void LogIn(string userName, string password)
         {
             var foundUser = FindUser(userName);
+            if (foundUser is null)
+            {
+                throw new BadCredentialsException();
+            }
             foundUser.TryToLogIn(password);
         }
     }
