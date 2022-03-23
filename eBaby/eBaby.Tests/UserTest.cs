@@ -31,8 +31,9 @@ namespace eBaby.Tests
         [Fact]
         public void Auction_Properties()
         {
+            var clock = new StoppedClock();
             Approvals.Verify(new Auction(Arbitrary.UserWithUserName("right_username"),
-                "ItemDescr",23.95m,"StartTime","EndTime"));
+                "ItemDescr",23.95m,clock.Now(),clock.Now()));
         }
 
         [Fact]
@@ -123,5 +124,21 @@ namespace eBaby.Tests
         }
     }
 
-    public record Auction(User Seller, string Itemdescr, decimal Startprice, string Starttime, string Endtime);
+    public class StoppedClock
+    {
+        public DateTimeOffset Now()
+        {
+            return DateTimeOffset.Parse("2022-02-02");
+        }
+    }   
+    
+    public class SystemClock
+    {
+        public DateTimeOffset Now()
+        {
+            return DateTimeOffset.Now;
+        }
+    }
+
+    public record Auction(User Seller, string Itemdescr, decimal Startprice, DateTimeOffset Starttime, DateTimeOffset Endtime);
 }
