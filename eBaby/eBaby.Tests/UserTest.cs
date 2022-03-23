@@ -80,5 +80,14 @@ namespace eBaby.Tests
             loginIn.Should().Throw<BadCredentialsException>();
             user.IsLoggedIn.Should().BeFalse();
         }
+        
+        [Fact]
+        public void User_LogOut()
+        {
+            var user = Arbitrary.User();
+            user.TryToLogIn("right_password");
+            user.LogOut();
+            user.IsLoggedIn.Should().BeFalse();
+        }
     }
 }

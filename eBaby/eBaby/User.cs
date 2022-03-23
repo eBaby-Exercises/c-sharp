@@ -19,5 +19,10 @@ namespace eBaby
             }
              
         }
+
+        public void LogOut()
+        {
+            IsLoggedIn = false;
+        }
     }
 }
