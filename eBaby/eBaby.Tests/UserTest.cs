@@ -59,11 +59,9 @@ namespace eBaby.Tests
         public void User_Login_Failure()
         {
             var user = Arbitrary.RegisteredUser(out var registry);
-            var foundUser = registry.FindUser(user.UserName);
-            foundUser.Should().BeSameAs(user);
-            foundUser.IsLoggedIn.Should().BeFalse();
-            user.TryToLogIn( "wrong_password");
-            foundUser.IsLoggedIn.Should().BeFalse();
+            user.IsLoggedIn.Should().BeFalse();
+            registry.LogIn(user.UserName, "wrong_password");
+            user.IsLoggedIn.Should().BeFalse();
             // If not equal, then: throw BadCredentials 
         }
     }
