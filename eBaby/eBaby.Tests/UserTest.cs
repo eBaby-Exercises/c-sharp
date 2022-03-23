@@ -50,13 +50,11 @@ namespace eBaby.Tests
         public void User_Login_Success()
         {
             var user = Arbitrary.RegisteredUser(out var registry);
-            var foundUser = registry.FindUser(user.UserName);
-            foundUser.Should().BeSameAs(user);
-            foundUser.IsLoggedIn.Should().BeFalse();
-            user.TryToLogIn( "right_password");
-            foundUser.IsLoggedIn.Should().BeTrue();
+            user.IsLoggedIn.Should().BeFalse();
+            registry.LogIn(user.UserName, "right_password");
+            user.IsLoggedIn.Should().BeTrue();
         }
-        
+
         [Fact]
         public void User_Login_Failure()
         {

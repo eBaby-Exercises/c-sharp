@@ -19,5 +19,11 @@ namespace eBaby
             return _users
                 .FirstOrDefault(user => user.UserName == userName);
         }
+
+        public void LogIn(string userName, string password)
+        {
+            var foundUser = FindUser(userName);
+            foundUser.TryToLogIn(password);
+        }
     }
 }
