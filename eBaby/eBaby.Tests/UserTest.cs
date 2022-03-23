@@ -23,6 +23,8 @@ namespace eBaby.Tests
             sut.UserEmail.Should().Be(userEmail);
             sut.UserName.Should().Be(userName);
             sut.Password.Should().Be(password);
+            sut.IsLoggedIn.Should().BeFalse();
+            sut.IsSeller.Should().BeFalse();
         }
 
         [Fact]
