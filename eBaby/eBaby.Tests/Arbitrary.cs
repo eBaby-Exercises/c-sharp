@@ -22,6 +22,4 @@ static internal class Arbitrary
         registry.Add(user);
         return user;
     }
-
-
 }
