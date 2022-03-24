@@ -6,6 +6,7 @@ namespace eBaby
     {
         public AuctionStatus Status { get; private set; }
         public decimal HighestBid { get; set; }
+        public User HighestBidder { get; set; }
 
         public void OnStart()
         {

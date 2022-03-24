@@ -37,6 +37,7 @@ namespace eBaby.Tests
 
         public void BeWonBy(User bidder, decimal bid)
         {
+            Subject.HighestBidder.Should().Be(bidder);
             Subject.HighestBid.Should().Be(bid);
         }
     }

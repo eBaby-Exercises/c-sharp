@@ -43,6 +43,7 @@ namespace eBaby
         public void Bid(Auction runningAuction, decimal amount)
         {
             runningAuction.HighestBid = amount;
+            runningAuction.HighestBidder = this;
         }
     }
 }
