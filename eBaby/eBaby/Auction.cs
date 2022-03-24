@@ -13,5 +13,10 @@ namespace eBaby
         {
             Status = AuctionStatus.Running;
         }
+
+        public void OnClose()
+        {
+            Status = AuctionStatus.Closed;
+        }
     }
 }
