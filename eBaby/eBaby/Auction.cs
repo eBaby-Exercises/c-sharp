@@ -18,7 +18,7 @@ namespace eBaby
         public void OnClose()
         {
             Status = AuctionStatus.Closed;
-            PostOffice.GetInstance().SendEMail(this.Seller.UserEmail, string.Empty);
+            PostOffice.GetInstance().SendEMail(this.Seller.UserEmail,"Hi");
         }
     }
 }

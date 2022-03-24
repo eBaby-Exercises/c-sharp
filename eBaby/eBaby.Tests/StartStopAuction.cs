@@ -43,7 +43,7 @@ namespace eBaby.Tests
             testSubject.OnStart();
             testSubject.OnClose();
             var postOffice = PostOffice.GetInstance();
-            postOffice.DoesLogContain(testSubject.Seller.UserEmail, string.Empty).Should().BeTrue();
+            postOffice.FindEmail(testSubject.Seller.UserEmail, string.Empty).Should().Be($"<sendEMail address=\"{testSubject.Seller.UserEmail}\" >Hi</sendEmail>\n");
         }
 
         [Fact]
