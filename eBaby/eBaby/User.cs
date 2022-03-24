@@ -37,7 +37,6 @@ namespace eBaby
             {
                 throw new NotAuthorizedException();
             }
-
             return new Auction(this, itemdescr, startPrice, startTime, endTime);
         }
     }

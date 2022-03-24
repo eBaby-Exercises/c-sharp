@@ -59,12 +59,12 @@ namespace eBaby.Tests
         [Fact]
         public void UserCanCreateAuction()
         {
-            var user = Arbitrary.RegisteredUser(out var registry);
+            var user = Arbitrary.UserWithUserName("right_user");
             user.BecomeSeller();
             var clock = new StoppedClock();
             var result = user.CreateAuction("ItemDescr", 23.95m, clock.Now()
                 , clock.Now());
-            result.Should().NotBeNull();
+            Approvals.Verify(result);
         }
 
         [Fact]
