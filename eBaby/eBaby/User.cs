@@ -39,5 +39,10 @@ namespace eBaby
             }
             return new Auction(this, itemdescr, startPrice, startTime, endTime);
         }
+
+        public void Bid(Auction runningAuction, decimal amount)
+        {
+            runningAuction.HighestBid = amount;
+        }
     }
 }
