@@ -1,4 +1,5 @@
 using System;
+using eBabyServices;
 
 namespace eBaby
 {
@@ -17,6 +18,7 @@ namespace eBaby
         public void OnClose()
         {
             Status = AuctionStatus.Closed;
+            PostOffice.GetInstance().SendEMail(this.Seller.UserEmail, string.Empty);
         }
     }
 }

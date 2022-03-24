@@ -1,5 +1,6 @@
 using System;
 using ApprovalTests;
+using eBabyServices;
 using FluentAssertions;
 using Xunit;
 
@@ -33,6 +34,16 @@ namespace eBaby.Tests
             testSubject.OnStart();
             testSubject.OnClose();
             testSubject.Status.Should().Be(AuctionStatus.Closed);
+        }
+        
+        [Fact]
+        public void StopWithNoBidShouldNotifySeller()
+        {
+            var testSubject = Arbitrary.Auction();
+            testSubject.OnStart();
+            testSubject.OnClose();
+            var postOffice = PostOffice.GetInstance();
+            postOffice.DoesLogContain(testSubject.Seller.UserEmail, string.Empty).Should().BeTrue();
         }
 
         [Fact]
