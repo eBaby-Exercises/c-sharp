@@ -21,7 +21,9 @@ namespace eBaby.Tests
         [Fact]
         public void CanStartAuction()
         {
-            var result = Arbitrary.Auction();
+            var testSubject = Arbitrary.Auction();
+            testSubject.OnStart();
+            testSubject.Status.Should().Be(AuctionStatus.Running);
         }
 
         [Fact]
