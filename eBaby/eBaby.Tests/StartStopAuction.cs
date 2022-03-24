@@ -19,6 +19,12 @@ namespace eBaby.Tests
         }
 
         [Fact]
+        public void CanStartAuction()
+        {
+            var result = Arbitrary.Auction();
+        }
+
+        [Fact]
         public void User_must_be_a_seller_to_create_an_auction()
         {
             var user = Arbitrary.RegisteredUser(out var registry);
