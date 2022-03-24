@@ -28,14 +28,6 @@ namespace eBaby.Tests
         }
 
         [Fact]
-        public void Auction_Properties()
-        {
-            var clock = new StoppedClock();
-            Approvals.Verify(new Auction(Arbitrary.UserWithUserName("right_username"),
-                "ItemDescr",23.95m,clock.Now(),clock.Now()));
-        }
-
-        [Fact]
         public void User_Registration()
         {
             User user = Arbitrary.User();
