@@ -55,7 +55,18 @@ namespace eBaby.Tests
             foundUser = registry.FindUser(otherUser.UserName);
             foundUser.Should().BeSameAs(otherUser);
         }
-        
+
+        [Fact]
+        public void UserCanCreateAuction()
+        {
+            var user = Arbitrary.RegisteredUser(out var registry);
+            user.BecomeSeller();
+            var clock = new StoppedClock();
+            var result = user.CreateAuction("ItemDescr", 23.95m, clock.Now()
+                , clock.Now());
+            result.Should().NotBeNull();
+        }
+
         [Fact]
         public void User_must_be_a_seller_to_create_an_auction()
         {
