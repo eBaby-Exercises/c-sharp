@@ -30,5 +30,13 @@ namespace eBaby
         {
             IsSeller = true;
         }
+
+        public void CreateAuction(string itemdescr, decimal startPrice, DateTimeOffset startTime, DateTimeOffset endTime)
+        {
+            if (!IsSeller)
+            {
+                throw new NotAuthorizedException();
+            }
+        }
     }
 }

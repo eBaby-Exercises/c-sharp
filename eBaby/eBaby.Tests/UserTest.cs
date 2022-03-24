@@ -57,6 +57,18 @@ namespace eBaby.Tests
         }
         
         [Fact]
+        public void User_must_be_a_seller_to_create_an_auction()
+        {
+            var user = Arbitrary.RegisteredUser(out var registry);
+            Action makeSeller = () =>
+            {
+                var clock = new StoppedClock();
+                user.CreateAuction("ItemDescr", 23.95m, clock.Now(), clock.Now());
+            };
+            makeSeller.Should().Throw<NotAuthorizedException>();
+        }
+        
+        [Fact]
         public void User_Login_Success()
         {
             var user = Arbitrary.RegisteredUser(out var registry);
@@ -122,27 +134,4 @@ namespace eBaby.Tests
             user.IsLoggedIn.Should().BeFalse();
         }
     }
-
-    public abstract class Clock
-    {
-        public abstract DateTimeOffset Now();
-    }
-
-    public class StoppedClock : Clock
-    {
-        public override DateTimeOffset Now()
-        {
-            return DateTimeOffset.Parse("2022-02-02");
-        }
-    }
-    
-    public class SystemClock : Clock
-    {
-        public override DateTimeOffset Now()
-        {
-            return DateTimeOffset.Now;
-        }
-    }
-
-    public record Auction(User Seller, string Itemdescr, decimal Startprice, DateTimeOffset Starttime, DateTimeOffset Endtime);
 }
