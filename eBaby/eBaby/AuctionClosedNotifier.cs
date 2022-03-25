@@ -2,6 +2,6 @@ namespace eBaby
 {
     public abstract class AuctionClosedNotifier
     {
-        public abstract void Notify(User seller, string itemdescr);
+        public abstract void Notify(User seller, User buyer, string itemdescr);
     }
 }

@@ -11,7 +11,7 @@ namespace eBaby
             _postOffice = postOffice;
         }
 
-        public override void Notify(User seller, string itemdescr)
+        public override void Notify(User seller, User buyer, string itemdescr)
         {
             _postOffice.SendEMail(seller.UserEmail,
                 EmailMessages.AuctionClosedWithoutBids(itemdescr));

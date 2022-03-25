@@ -3,25 +3,6 @@ using eBabyServices;
 
 namespace eBaby
 {
-    public class SellNotifier
-    {
-        public SellNotifier(PostOffice postOffice)
-        {
-            PostOffice = postOffice;
-        }
-
-        public PostOffice PostOffice { get; private set; }
-
-        public void Notify(User seller, User buyer, string itemName)
-        {
-            PostOffice.SendEMail(seller.UserEmail,
-                EmailMessages.AuctionClosedWithBid(itemName));
-
-            PostOffice.SendEMail(buyer.UserEmail,
-                EmailMessages.YouWonTheAuction(itemName));
-        }
-    }
-
     public record Auction(User Seller, string Itemdescr, decimal Startprice, DateTimeOffset Starttime,
         DateTimeOffset Endtime)
     {
@@ -41,7 +22,7 @@ namespace eBaby
 
             if (IfAuctionHasNotSold())
             {
-                new NoSellNotifier(_postOffice).Notify(this.Seller, Itemdescr);
+                new NoSellNotifier(_postOffice).Notify(this.Seller, this.HighestBidder, Itemdescr);
             }
             else
             {
