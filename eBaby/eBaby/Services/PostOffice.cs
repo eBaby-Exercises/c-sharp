@@ -23,6 +23,11 @@ namespace eBabyServices
             return instance;
         }
 
+        public static PostOffice GetNewInstance()
+        {
+            return new PostOffice();
+        }
+
         public int Size()
         {
             return _log.Count;

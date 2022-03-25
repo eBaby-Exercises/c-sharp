@@ -39,11 +39,11 @@ namespace eBaby.Tests
         [Fact]
         public void StopWithNoBidShouldNotifySeller()
         {
-            var testSubject = Arbitrary.Auction();
+            var postOffice = PostOffice.GetNewInstance();
+            var testSubject = Arbitrary.Auction(postOffice);
             testSubject.OnStart();
             testSubject.OnClose();
-            var postOffice = PostOffice.GetInstance();
-            postOffice.Should().HaveSeenMsg(testSubject);
+            postOffice.Should().HaveSeenMsg(testSubject.Seller.UserEmail, "Hi");
         }
 
         [Fact]

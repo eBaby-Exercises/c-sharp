@@ -6,6 +6,7 @@ namespace eBaby
     public record Auction(User Seller, string Itemdescr, decimal Startprice, DateTimeOffset Starttime,
         DateTimeOffset Endtime)
     {
+        private PostOffice _postOffice= PostOffice.GetInstance();
         public AuctionStatus Status { get; private set; }
         public decimal HighestBid { get; set; }
         public User HighestBidder { get; set; }
@@ -18,7 +19,12 @@ namespace eBaby
         public void OnClose()
         {
             Status = AuctionStatus.Closed;
-            PostOffice.GetInstance().SendEMail(this.Seller.UserEmail,"Hi");
+            _postOffice.SendEMail(this.Seller.UserEmail,"Hi");
+        }
+
+        public void UsePostOffice(PostOffice postOffice)
+        {
+            _postOffice = postOffice;
         }
     }
 }

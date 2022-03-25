@@ -1,5 +1,6 @@
 using System;
 using eBaby;
+using eBabyServices;
 
 static internal class Arbitrary
 {
@@ -12,7 +13,7 @@ static internal class Arbitrary
     public static User UserWithUserName(string randomUserName)
     {
         return new User(string.Empty,
-            string.Empty, string.Empty, randomUserName, "right_password");
+            string.Empty, randomUserName+"@example.com", randomUserName, "right_password");
     }
 
     public static User RegisteredUser(out UserRegistry registry)
@@ -25,11 +26,18 @@ static internal class Arbitrary
 
     public static Auction Auction()
     {
+        var result = Auction(PostOffice.GetNewInstance());
+        return result;
+    }
+
+    public static Auction Auction(PostOffice postOffice)
+    {
         var user = Arbitrary.UserWithUserName("right_user");
         user.BecomeSeller();
         var clock = new StoppedClock();
         var result = user.CreateAuction("ItemDescr", 23.95m, clock.Now()
             , clock.Now());
+        result.UsePostOffice(postOffice);
         return result;
     }
 }

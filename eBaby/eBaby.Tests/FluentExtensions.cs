@@ -26,10 +26,10 @@ namespace eBaby.Tests
 
         protected override string Identifier => "PostOffice";
 
-        public void HaveSeenMsg(Auction testSubject)
+        public void HaveSeenMsg(string recipient, string message)
         {
-            Subject.FindEmail(testSubject.Seller.UserEmail, string.Empty).Should()
-                .Be($"<sendEMail address=\"{testSubject.Seller.UserEmail}\" >Hi</sendEmail>\n");
+            Subject.FindEmail(recipient, string.Empty).Should()
+                .Be($"<sendEMail address=\"{recipient}\" >{message}</sendEmail>\n");
         }
     }
 }
