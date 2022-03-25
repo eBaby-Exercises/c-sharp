@@ -29,6 +29,9 @@ namespace eBaby
             {
                 _postOffice.SendEMail(this.Seller.UserEmail,
                     EmailMessages.AuctionClosedWithBid(Itemdescr));
+                
+                _postOffice.SendEMail(this.HighestBidder.UserEmail,
+                    EmailMessages.YouWonTheAuction(Itemdescr));
             }
             
         }

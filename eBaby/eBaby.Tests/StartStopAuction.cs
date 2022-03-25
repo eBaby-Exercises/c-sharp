@@ -60,6 +60,9 @@ namespace eBaby.Tests
 
             postOffice.Should().HaveSeenMsg(testSubject.Seller.UserEmail,
                 EmailMessages.AuctionClosedWithBid(testSubject.Itemdescr));
+            
+            postOffice.Should().HaveSeenMsg(buyer.UserEmail,
+                EmailMessages.YouWonTheAuction(testSubject.Itemdescr));
         } 
 
         [Fact]

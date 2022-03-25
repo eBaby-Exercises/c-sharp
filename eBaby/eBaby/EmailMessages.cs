@@ -11,5 +11,10 @@ namespace eBaby
         {
             return itemName;
         }
+
+        public static string YouWonTheAuction(string itemName)
+        {
+            return itemName;
+        }
     }
 }
