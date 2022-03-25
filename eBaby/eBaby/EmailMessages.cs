@@ -6,5 +6,10 @@ namespace eBaby
         {
             return $"Sorry, your auction for {itemname} did not have any bidders.";
         }
+
+        public static string AuctionClosedWithBid(string itemName)
+        {
+            return itemName;
+        }
     }
 }

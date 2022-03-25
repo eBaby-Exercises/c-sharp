@@ -19,8 +19,18 @@ namespace eBaby
         public void OnClose()
         {
             Status = AuctionStatus.Closed;
-            _postOffice.SendEMail(this.Seller.UserEmail, 
-                EmailMessages.AuctionClosedWithoutBids(Itemdescr));
+
+            if (HighestBidder is null)
+            {
+                _postOffice.SendEMail(this.Seller.UserEmail,
+                    EmailMessages.AuctionClosedWithoutBids(Itemdescr));
+            }
+            else
+            {
+                _postOffice.SendEMail(this.Seller.UserEmail,
+                    EmailMessages.AuctionClosedWithBid(Itemdescr));
+            }
+            
         }
 
         public void UsePostOffice(PostOffice postOffice)

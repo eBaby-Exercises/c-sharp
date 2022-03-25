@@ -45,6 +45,21 @@ namespace eBaby.Tests
             testSubject.OnClose();
             postOffice.Should().HaveSeenMsg(testSubject.Seller.UserEmail,
                 EmailMessages.AuctionClosedWithoutBids(testSubject.Itemdescr));
+        }
+        
+        [Fact]
+        public void StopWithBiddersShouldNotifySellerAndBuyer()
+        {
+            var buyer = Arbitrary.User();
+            var postOffice = PostOffice.GetNewInstance();
+            var testSubject = Arbitrary.Auction(postOffice);
+
+            testSubject.OnStart();
+            buyer.Bid(testSubject, 23.00M);
+            testSubject.OnClose();
+
+            postOffice.Should().HaveSeenMsg(testSubject.Seller.UserEmail,
+                EmailMessages.AuctionClosedWithBid(testSubject.Itemdescr));
         } 
 
         [Fact]
