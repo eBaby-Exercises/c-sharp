@@ -43,8 +43,9 @@ namespace eBaby.Tests
             var testSubject = Arbitrary.Auction(postOffice);
             testSubject.OnStart();
             testSubject.OnClose();
-            postOffice.Should().HaveSeenMsg(testSubject.Seller.UserEmail, "Hi");
-        }
+            postOffice.Should().HaveSeenMsg(testSubject.Seller.UserEmail,
+                EmailMessages.AuctionClosedWithoutBids(testSubject.Itemdescr));
+        } 
 
         [Fact]
         public void User_must_be_a_seller_to_create_an_auction()
