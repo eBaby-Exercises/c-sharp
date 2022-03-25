@@ -20,20 +20,28 @@ namespace eBaby
         {
             Status = AuctionStatus.Closed;
 
-            if (HighestBidder is null)
+            if (IfAuctionHasNotSold())
             {
-                _postOffice.SendEMail(this.Seller.UserEmail,
-                    EmailMessages.AuctionClosedWithoutBids(Itemdescr));
+                new NoSellNotifier(_postOffice).Notify(this.Seller, Itemdescr);
             }
             else
             {
-                _postOffice.SendEMail(this.Seller.UserEmail,
-                    EmailMessages.AuctionClosedWithBid(Itemdescr));
-                
-                _postOffice.SendEMail(this.HighestBidder.UserEmail,
-                    EmailMessages.YouWonTheAuction(Itemdescr));
+                NotifySell();
             }
-            
+        }
+
+        private bool IfAuctionHasNotSold()
+        {
+            return HighestBidder is null;
+        }
+
+        private void NotifySell()
+        {
+            _postOffice.SendEMail(this.Seller.UserEmail,
+                EmailMessages.AuctionClosedWithBid(Itemdescr));
+
+            _postOffice.SendEMail(this.HighestBidder.UserEmail,
+                EmailMessages.YouWonTheAuction(Itemdescr));
         }
 
         public void UsePostOffice(PostOffice postOffice)
