@@ -20,14 +20,23 @@ namespace eBaby
         {
             Status = AuctionStatus.Closed;
 
+            var notifier = CreateClosedNotifier();
+            notifier.Notify(this.Seller, this.HighestBidder, Itemdescr);
+        }
+
+        private AuctionClosedNotifier CreateClosedNotifier()
+        {
+            AuctionClosedNotifier notifier;
             if (IfAuctionHasNotSold())
             {
-                new NoSellNotifier(_postOffice).Notify(this.Seller, this.HighestBidder, Itemdescr);
+                notifier = new NoSellNotifier(_postOffice);
             }
             else
             {
-                new SellNotifier(_postOffice).Notify(this.Seller, this.HighestBidder, Itemdescr);
+                notifier = new SellNotifier(_postOffice);
             }
+
+            return notifier;
         }
 
         private bool IfAuctionHasNotSold()
